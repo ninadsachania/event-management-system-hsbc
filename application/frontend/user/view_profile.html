@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>View Profile</title>
+        <link rel="stylesheet" href="viewprofile.css">
+        
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Welcome, User!</h1>
+        </div>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="user.html">Home</a></li>
+                    <li><a href="change_password.html">Change Password</a></li>
+                    <li><a href="send_plan_request.html">Send Plan Request</a></li>
+                    <li><a href="view_quotations.html">View Quotations</a></li>
+                    <li><a href="../index.html">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="profile-container">
+            <h1>Your Profile</h1>
+            <div class="user-info">
+                <div class="user-avatar">
+                    <img src="avtar.png" alt="Your Profile Picture">
+                </div>
+                <div class="user-details">
+                    <h2>Jayvardhan Rathi</h2>
+                    <p>Username: jayvardhanrathi</p>
+                    <p>Password: jayvardhan@123</p>
+                    <p>Date of Joining: 05 Aug 2023</p>
+                    <p>Date of Birth: 16 Sep 2001</p>
+                    <p>Department: MSS</p>
+                    <div class="editable-field">
+                        <p>Mobile No.: <span id="mobileNumber">1234567890</span> <i class="edit-icon" id="editMobileIcon">✎</i></p>
+                        <input type="text" id="mobileInput" style="display: none;">
+                    </div>
+                    <div class="editable-field">
+                        <p>Email: <span id="email">jayvardhan.rathi@gmail.com</span> <i class="edit-icon" id="editEmailIcon">✎</i></p>
+                        <input type="text" id="emailInput" style="display: none;">
+                    </div>
+                    <div class="editable-field">
+                        <p>Location: <span id="location">123 Main Street, City, Country</span> <i class="edit-icon" id="editLocationIcon">✎</i></p>
+                        <input type="text" id="locationInput" style="display: none;">
+                    </div>
+                    <p>Status: Active</p>
+                </div>
+            </div>
+            <!-- <div class="user-actions">
+                <a href="edit_profile.html">Edit Profile</a>
+                <a href="logout.html" class="logout-button">Logout</a>
+            </div> -->
+        </main>
+
+        <footer>
+            <!-- Footer content here -->
+        </footer>
+
+        <script>
+            const editMobileIcon = document.getElementById('editMobileIcon');
+            const editEmailIcon = document.getElementById('editEmailIcon');
+            const editLocationIcon = document.getElementById('editLocationIcon');
+        
+            const mobileNumber = document.getElementById('mobileNumber');
+            const email = document.getElementById('email');
+            const location1 = document.getElementById('location');
+        
+            const mobileInput = document.getElementById('mobileInput');
+            const emailInput = document.getElementById('emailInput');
+            const locationInput = document.getElementById('locationInput');
+        
+            editMobileIcon.addEventListener('click', () => {
+                mobileNumber.style.display = 'none';
+                mobileInput.style.display = 'inline-block';
+                mobileInput.value = mobileNumber.textContent;
+                mobileInput.focus();
+            });
+        
+            editEmailIcon.addEventListener('click', () => {
+                email.style.display = 'none';
+                emailInput.style.display = 'inline-block';
+                emailInput.value = email.textContent;
+                emailInput.focus();
+            });
+        
+            editLocationIcon.addEventListener('click', () => {
+                location.style.display = 'none';
+                locationInput.style.display = 'inline-block';
+                locationInput.value = location1.textContent;
+                locationInput.focus();
+            });
+        
+            mobileInput.addEventListener('blur', () => {
+                mobileNumber.style.display = 'inline-block';
+                mobileInput.style.display = 'none';
+                mobileNumber.textContent = mobileInput.value;
+            });
+        
+            emailInput.addEventListener('blur', () => {
+                email.style.display = 'inline-block';
+                emailInput.style.display = 'none';
+                email.textContent = emailInput.value;
+            });
+        
+            locationInput.addEventListener('blur', () => {
+                location.style.display = 'inline-block';
+                locationInput.style.display = 'none';
+                location.textContent = locationInput.value;
+            });
+        </script>
+        
+    </body>
+
+</html>

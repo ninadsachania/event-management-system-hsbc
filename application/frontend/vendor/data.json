@@ -1,0 +1,14 @@
+[
+    {
+        "name": "John Doe",
+        "email": "john@example.com",
+        "eventType": "Wedding",
+        "date": "2023-10-15"
+    },
+    {
+        "name": "Jane Smith",
+        "email": "jane@example.com",
+        "eventType": "Birthday",
+        "date": "2023-11-20"
+    }
+]

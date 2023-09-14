@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title>View Registrations</title>
+    </head>
+
+    <body>
+        <div class="header view-registrations-header">
+            <h1>View Registrations</h1>
+        </div>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Event</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="registrations-table-body">
+                    <!-- Registration data will be dynamically populated here -->
+                </tbody>
+            </table>
+        </div>
+        <script src="script.js"></script>
+    </body>
+
+</html>

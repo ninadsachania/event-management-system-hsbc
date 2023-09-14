@@ -1,0 +1,29 @@
+[
+    {
+        "Vendor Id": "V12345",
+        "Vendor Name": "ABC Electronics",
+        "Quotation Amount": "$500",
+        "User Id": "U9876",
+        "Plan Request Id": "PR5678",
+        "Status": "Accepted",
+        "Package": "Gold Package"
+    },
+    {
+        "Vendor Id": "V67890",
+        "Vendor Name": "XYZ Appliances",
+        "Quotation Amount": "$450",
+        "User Id": "U5432",
+        "Plan Request Id": "PR1234",
+        "Status": "Pending",
+        "Package": "Silver Package"
+    },
+    {
+        "Vendor Id": "V23456",
+        "Vendor Name": "PQR Technologies",
+        "Quotation Amount": "$600",
+        "User Id": "U1234",
+        "Plan Request Id": "PR7890",
+        "Status": "Rejected",
+        "Package": "Bronze Package"
+    }
+]

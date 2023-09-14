@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="full-page">
+        <div class="navbar">
+            <div>
+                <a href='user.html'></a>
+            </div>
+            <nav>
+                <ul id='MenuItems'>
+                    <li><a href='/index.html'>Home</a></li>
+                    <li><a href='/services.html'>Services</a></li>
+                    <li><a href='/about.html'>About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class='login-page'>
+            <div class="form-box">
+                <div class='button-box'>
+                    <div id='btn'></div>
+                    <button type='button' onclick='login()' class='toggle-btn'>Log In</button>
+                    <button type='button' onclick='register()' class='toggle-btn'>Register</button>
+                </div>
+                <form id='login' class='input-group-login' action="user.html" onsubmit="return validateData('email', 'pass')">
+                    <input type='text' class='input-field' placeholder='Email Id' id='email' required>
+                    <input type='password' class='input-field' placeholder='Enter Password' id='pass' required>
+                    <input type='checkbox' class='check-box'><span>Remember Password</span>
+                    <button type='submit' class='submit-btn'>Log in</button>
+                </form>
+                <form id='register' class='input-group-register' action="user.html">
+                    <input type='text' class='input-field' placeholder='First Name' required>
+                    <input type='text' class='input-field' placeholder='Last Name ' required>
+                    <input type='email' class='input-field' placeholder='Email Id' required>
+                    <input type='password' class='input-field' placeholder='Enter Password' required>
+                    <input type='password' class='input-field' placeholder='Confirm Password' required>
+                    <input type='checkbox' class='check-box'><span>I agree to the terms and conditions</span>
+                    <button type='submit' class='submit-btn'>Register</button>
+                </form>
+            </div>
+        </div>
+        <section id="footer">
+            <img src="/images/index/wave2.png" alt="img" class="footer-img">
+        </section>
+    </div>
+    <script>
+        function register() {
+            document.getElementById('login').style.left = '-400px';
+            document.getElementById('register').style.left = '50px';
+            document.getElementById('btn').style.left = '110px';
+        }
+
+        function login() {
+            document.getElementById('login').style.left = '50px';
+            document.getElementById('register').style.left = '450px';
+            document.getElementById('btn').style.left = '0px';
+        }
+
+        function validateText(id) {
+            var nm = document.getElementById(id).value;
+
+            if (nm.trim().length > 0) {
+                innerHTML = "";
+                return true;
+            }
+            alert("data cannot be empty or space");
+            return false;
+        }
+
+        function validateData(emailId, passId) {
+            var flag = validateText(emailId);
+            var flag1 = validateText(passId);
+            return flag && flag1;
+        }
+    </script>
+</body>
+
+</html>

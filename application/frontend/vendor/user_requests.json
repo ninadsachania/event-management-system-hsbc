@@ -1,0 +1,22 @@
+[
+    {
+        "userId": 1,
+        "eventType": "Wedding",
+        "eventDate": "2023-09-20"
+    },
+    {
+        "userId": 2,
+        "eventType": "Birthday Party",
+        "eventDate": "2023-10-15"
+    },
+    {
+        "userId": 3,
+        "eventType": "Corporate Event",
+        "eventDate": "2023-11-05"
+    },
+    {
+        "userId": 4,
+        "eventType": "Anniversary Celebration",
+        "eventDate": "2023-12-02"
+    }
+]

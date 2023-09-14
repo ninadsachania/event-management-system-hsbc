@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Vendor 1",
+        "category": "Category A",
+        "description": "Description for Vendor 1",
+        "contact": "Contact Info for Vendor 1"
+    },
+    {
+        "id": 2,
+        "name": "Vendor 2",
+        "category": "Category B",
+        "description": "Description for Vendor 2",
+        "contact": "Contact Info for Vendor 2"
+    },
+    {
+        "id": 3,
+        "name": "Vendor 3",
+        "category": "Category A",
+        "description": "Description for Vendor 3",
+        "contact": "Contact Info for Vendor 3"
+    }
+]
