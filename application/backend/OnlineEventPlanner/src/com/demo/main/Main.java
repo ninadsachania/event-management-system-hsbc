@@ -1,17 +1,14 @@
 package com.demo.main;
 
-import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import com.demo.dao.AdminDao;
-import com.demo.dao.UserDao;
-import com.demo.dao.VendorDao;
-import com.demo.dao.impls.AdminDaoImpl;
-import com.demo.dao.impls.UserDaoImpl;
-import com.demo.dao.impls.VendorDaoImpl;
-import com.demo.dao.util.DBUtil;
+import com.demo.exceptions.InvalidNumberOfPeopleException;
+import com.demo.exceptions.PlannedDateException;
+import com.demo.models.PlanRequest;
+import com.demo.models.Quotation;
 import com.demo.models.User;
 import com.demo.models.Vendor;
 import com.demo.service.AdminService;
@@ -42,19 +39,19 @@ public class Main {
 
 			switch (choice) {
 			case 1:
-				adminActions(adminService, userService, vendorService);
+				// adminActions(adminService, userService, vendorService);
 				break;
-//                    case 2:
-//                        vendorActions(vendorService);
-//                        break;
-//                    case 3:
-//                        userActions(userService, vendorService);
-//                        break;
-//                    case 4:
-//                        System.out.println("Exiting...");
-//                        DBUtil.closeConnection();
-//                        System.exit(0);
-//                        break;
+			case 2:
+				// vendorActions(vendorService);
+				break;
+			case 3:
+				userActions(userService);
+				break;
+			case 4:
+				scanner.close();
+				System.out.println("Exiting...");
+				System.exit(0);
+				break;
 			default:
 				System.out.println("Invalid choice. Please try again.");
 			}
@@ -72,16 +69,13 @@ public class Main {
 		System.out.println("4. Update User Status");
 		System.out.println("5. Back to Main Menu");
 		System.out.print("Enter your choice: ");
-		
-		
-		
 
 		int choice = scanner.nextInt();
 		switch (choice) {
 		case 0:
 			break;
 		case 1:
-			
+
 			// Implement add vendor
 			break;
 		case 2:
@@ -99,7 +93,7 @@ public class Main {
 			}
 			break;
 		case 4:
-			
+
 			break;
 		case 5:
 			return;
@@ -107,6 +101,7 @@ public class Main {
 			System.out.println("Invalid choice. Please try again.");
 		}
 	}
+
 //
 //    private static void vendorActions(VendorService vendorService) {
 //        // Implement vendor actions here
@@ -140,35 +135,100 @@ public class Main {
 //        }
 //    }
 //
-//    private static void userActions(UserService userService, VendorService vendorService) {
-	// Implement user actions here
-//        System.out.println("User Actions:");
-//        System.out.println("1. Insert Plan Request");
-//        System.out.println("2. View Quotations");
-//        System.out.println("3. User Registration");
-//        System.out.println("4. Update Quotations");
-//        System.out.println("5. Back to Main Menu");
-//        System.out.print("Enter your choice: ");
-//
-//        int choice = scanner.nextInt();
-//        switch (choice) {
-//        case 1:
-//            // Implement insert plan request
-//            break;
-//        case 2:
-//            // Implement view quotations
-//            break;
-//        case 3:
-//            // Implement user registration
-//            break;
-//        case 4:
-//            // Implement update quotations
-//            break;
-//        case 5:
-//            // Back to Main Menu
-//            break;
-//        default:
-//            System.out.println("Invalid choice. Please try again.");
-//    }
-//}
+	private static void userActions(UserService userService) {
+		try {
+			System.out.println("1. Register\n2. Login\nEnter:");
+			int ch = scanner.nextInt();
+			if (ch == 1) {
+				User u = UserService.getUser();
+				if (userService.registerUser(u)) {
+					System.out.println("Successfully registered");
+				} else {
+					System.out.println("Cannot register");
+				}
+			} else {
+				System.out.println("Enter userId");
+				int id = scanner.nextInt();
+				System.out.println("Enter username:");
+				String uname = scanner.next();
+				System.out.println("Enter Password");
+				String passwd = scanner.next();
+				User us = new User(id, uname, passwd);
+				if (userService.validateUser(us)) {
+					System.out.println("User Actions:");
+					System.out.println("1. Insert Plan Request");
+					System.out.println("2. View Quotations");
+					System.out.println("3. Update Quotations status");
+					System.out.println("4. Update Password");
+					System.out.println("5. View User");
+					System.out.println("6. Back to Main Menu");
+					System.out.print("Enter your choice: ");
+
+					int choice = scanner.nextInt();
+					switch (choice) {
+					case 1:
+						PlanRequest preq = UserService.getPlanRequestDetails();
+						if (userService.addPlanRequest(preq)) {
+							System.out.println("Plan request added successfully");
+						} else {
+							System.out.println("Cannot add plan request record");
+						}
+						break;
+					case 2:
+						System.out.println("Enter user id:");
+						int uid = scanner.nextInt();
+						List<Quotation> quotations = userService.viewQuotation(uid);
+						for (Quotation quot : quotations) {
+							System.out.println(quot);
+						}
+						break;
+					case 3:
+						System.out.println("Enter quotation id:");
+						int quotid = scanner.nextInt();
+						System.out.println("Enter quotation status(Accepted/Rejected):");
+						String status = scanner.next();
+						if (userService.updateQuotationStatus(quotid, status)) {
+							System.out.println("Quotation status updated successfully");
+						} else {
+							System.out.println("cannot update Quotation status");
+						}
+						break;
+					case 4:
+						System.out.println("Enter user id:");
+						int userid = scanner.nextInt();
+						System.out.println("Enter new password:");
+						String pswd = scanner.next();
+						if (userService.updatePassword(userid, passwd)) {
+							System.out.println("password updated successfuly");
+						} else {
+							System.out.println("Cannot update password");
+						}
+						break;
+					case 5:
+						System.out.println("Enter user id:");
+						userid = scanner.nextInt();
+						User user1 = userService.findById(userid);
+						System.out.println(user1);
+						break;
+					case 6:
+						userService.closeConnection();
+						return;
+					default:
+						System.out.println("Invalid choice. Please try again.");
+						return;
+					}
+				}
+			}
+		} catch (InvalidNumberOfPeopleException e1) {
+			System.out.println(e1.getMessage());
+		} catch (PlannedDateException e) {
+			System.out.println(e.getMessage());
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		} catch (InputMismatchException e) {
+			System.out.println("please enter valid inputs");
+		} catch (Exception e) {
+			System.out.println("Something went wrong....");
+		}
+	}
 }
