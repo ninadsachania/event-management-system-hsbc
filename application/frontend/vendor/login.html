@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vendor Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="full-page">
+        <div class="navbar">
+            <nav>
+                <ul id='MenuItems'>
+                    <li><a href='/index.html'>Home</a></li>
+                    <li><a href='/services.html'>Services</a></li>
+                    <li><a href='/about.html'>About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class='login-page'>
+            <div class="form-box">
+                <div class='button-box'>
+                    <div id='btn'></div>
+                </div>
+                <h1>Vendor Log-In</h1>
+                <form id='login' class='input-group-login' action="vendor.html" onsubmit="return validatedata(id)">
+                    <input type='text' class='input-field' placeholder='Email Id' id="email" required>
+                    <input type='password' class='input-field' placeholder='Enter Password' id="pass" required>
+                    <input type='checkbox' class='check-box'><span>Remember Password</span>
+                    <button type='submit' class='submit-btn'>Log in</button>
+                </form>
+            </div>
+        </div>
+        <section id="footer">
+            <img src="/images/index/wave2.png" alt="img" class="footer-img">
+        </section>
+    </div>
+    <script>
+        function validateText(id) {
+            var nm = document.getElementById(id).value;
+
+            if (nm.trim().length > 0) {
+                innerHTML = "";
+                return true;
+            }
+            alert("Data cannot be empty or space");
+            return false;
+        }
+
+        function validatedata() {
+            var flag = validateText("email");
+            var flag1 = validateText("pass");
+            return flag && flag1;
+        }
+    </script>
+</body>
+
+</html>

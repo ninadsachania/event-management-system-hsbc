@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="createquotation.css">
+        <title>Create Quotation</title>
+    </head>
+
+    <body>
+        <div class="header">
+            <h1>Create Quotation</h1>
+        </div>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="vendor.html">Vendor</a></li>
+                    <li><a href="add_package.html">Add Package</a></li>
+                    <li><a href="view_user_requests.html">View User Requests</a></li>
+                    <li><a href="../index.html">Logout</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <form id="quotationForm">
+            <label for="userId">User ID:</label>
+            <input type="text" id="userId" name="userId" readonly><br><br>
+
+            <label for="quotationAmount">Quotation Amount:</label>
+            <input type="text" id="quotationAmount" name="quotationAmount"><br><br>
+
+            <input type="submit" value="Submit Quotation">
+        </form>
+
+        <script src="script1.js"></script>
+    </body>
+
+</html>
