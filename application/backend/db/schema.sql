@@ -1,73 +1,72 @@
-create database eventplanner;
-use eventplanner;
-create table Admin(
-	username varchar(20) primary key,
-    firstname varchar(20) not null,
-    lastname varchar(20) not null,
-    passwd varchar(20) not null,
-    email varchar(50) not null,
-    mobile varchar(10) not null
+CREATE DATABASE eventplanner;
+USE eventplanner;
+
+CREATE TABLE Admin (
+    username VARCHAR(20) PRIMARY KEY,
+    firstname VARCHAR(20) NOT NULL,
+    lastname VARCHAR(20) NOT NULL,
+    passwd VARCHAR(20) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    mobile VARCHAR(10) NOT NULL
 );
 
-create table Vendor(
-	vendorid int primary key,
-    username varchar(20) unique,
-    passwd varchar(20) not null,
-	firstname varchar(20) not null,
-    lastname varchar(20) not null,
-    street varchar(20),
-    city varchar(20),
-    state varchar(20),
-    country varchar(20),
-    pincode varchar(6),
-	email varchar(50) not null,
-    mobile varchar(10) not null
+CREATE TABLE Vendor (
+    vendorid INT PRIMARY KEY,
+    username VARCHAR(20) UNIQUE,
+    passwd VARCHAR(20) NOT NULL,
+    firstname VARCHAR(20) NOT NULL,
+    lastname VARCHAR(20) NOT NULL,
+    street VARCHAR(20),
+    city VARCHAR(20),
+    state VARCHAR(20),
+    country VARCHAR(20),
+    pincode VARCHAR(6),
+    email VARCHAR(50) NOT NULL,
+    mobile VARCHAR(10) NOT NULL
 );
 
-create table User(
-	userid int primary key,
-    firstname varchar(20) not null,
-    lastname varchar(20) not null,
-    username varchar(20) unique,
-	passwd varchar(20) not null,
-    doj date,
-    dob date,
-    dept varchar(20) check (dept in ('Marketing','Sales','IT')),
-    email varchar(50) not null,
-    mobile varchar(10) not null,
-    location varchar(20),
-    userstatus varchar(15) check (status in ('active','non-active')) default 'non-active'
+CREATE TABLE User (
+    userid INT PRIMARY KEY,
+    firstname VARCHAR(20) NOT NULL,
+    lastname VARCHAR(20) NOT NULL,
+    username VARCHAR(20) UNIQUE,
+    passwd VARCHAR(20) NOT NULL,
+    doj DATE,
+    dob DATE,
+    dept VARCHAR(20) CHECK (dept IN ('Marketing', 'Sales', 'IT')),
+    email VARCHAR(50) NOT NULL,
+    mobile VARCHAR(10) NOT NULL,
+    location VARCHAR(20),
+    userstatus VARCHAR(15) CHECK (userstatus IN ('active', 'non-active')) DEFAULT 'non-active'
 );
 
-
-create table Planrequest(
-	requestid int primary key,
-    fromdate date,
-    todate date,
-    nopeopleattending int,
-    userid int,
-    -- listofservices varchar(500) ,
-	foreign key(userid) references User(userid)
+CREATE TABLE Planrequest (
+    requestid INT PRIMARY KEY,
+    fromdate DATE,
+    todate DATE,
+    nopeopleattending INT,
+    userid INT,
+    listofservices VARCHAR(500),
+    FOREIGN KEY (userid) REFERENCES User (userid)
 );
 
-create table Quotation(
-	quotid int primary key,
-    packagetype varchar(20) check (packagetype in ('Basic','Premium','Classic')),
-    estimatedamt double,
-    vendorid int,
-    userid int,
-    requestid int,
-    quotstatus varchar(10) check (quotstatus in ('Accepted','Pending','Rejected')) default 'pending',
-    foreign key(vendorid) references Vendor(vendorid),
-    foreign key(userid) references User(userid),
-    foreign key(requestid) references Planrequest(requestid)
+CREATE TABLE Quotation (
+    quotid INT PRIMARY KEY,
+    packagetype VARCHAR(20) CHECK (packagetype IN ('Basic', 'Premium', 'Classic')),
+    estimatedamt DOUBLE,
+    vendorid INT,
+    userid INT,
+    requestid INT,
+    quotstatus VARCHAR(10) CHECK (quotstatus IN ('Accepted', 'Pending', 'Rejected')) DEFAULT 'pending',
+    FOREIGN KEY (vendorid) REFERENCES Vendor (vendorid),
+    FOREIGN KEY (userid) REFERENCES User (userid),
+    FOREIGN KEY (requestid) REFERENCES Planrequest (requestid)
 );
 
-create table Package(
-	packageid int primary key,
-    packagetype varchar(20) check (packagetype in ('Basic','Premium','Classic')),
-	-- list of services
-    amount double not null,
-    vendorid int,
-    foreign key(vendorid) references Vendor(vendorid)
+CREATE TABLE Package (
+    packageid INT PRIMARY KEY,
+    packagetype VARCHAR(20) CHECK (packagetype IN ('Basic', 'Premium', 'Classic')),
+    amount DOUBLE NOT NULL,
+    vendorid INT,
+    FOREIGN KEY (vendorid) REFERENCES Vendor (vendorid)
 );
