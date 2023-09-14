@@ -22,6 +22,7 @@ public class UserDaoImpl implements UserDao {
 		try {
 			conn = DBUtil.getConnection();
 		} catch (SQLException e) {
+			System.err.println(e.getMessage());
 			System.out.println("Cannot connect to Database");
 		}
 	}
