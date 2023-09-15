@@ -22,7 +22,6 @@ public class UserDaoImpl implements UserDao {
 		try {
 			conn = DBUtil.getConnection();
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
 			System.out.println("Cannot connect to Database");
 		}
 	}
@@ -74,13 +73,14 @@ public class UserDaoImpl implements UserDao {
 	// creating plan request
 	@Override
 	public boolean addPlanRequest(PlanRequest pl) throws SQLException {
-		query = "insert into Planrequest values(?,?,?,?,?)";
+		query = "insert into Planrequest values(?,?,?,?,?,?)";
 		pstmt = conn.prepareStatement(query);
 		pstmt.setInt(1, pl.getRequestId());
 		pstmt.setString(2, pl.getFromdate());
 		pstmt.setString(3, pl.getTodate());
 		pstmt.setInt(4, pl.getNoOfPeopleAttending());
 		pstmt.setInt(5, pl.getUserId());
+		pstmt.setString(6, pl.getListOfServices());
 		int cnt = pstmt.executeUpdate();
 		if (cnt > 0)
 			return true;
