@@ -2,17 +2,21 @@ package com.demo.models;
 
 public class PlanRequest {
 	private int requestId, noOfPeopleAttending, userId;
-	private String fromdate, todate;
+	private String fromdate, todate, listOfServices;
 
 	// parameterized constructor
-	public PlanRequest(int requestId, int noOfPeopleAttending, int userId, String fromdate, String todate) {
+	public PlanRequest(int requestId, int noOfPeopleAttending, int userId, String fromdate, String todate,
+			String listOfServices) {
+		super();
 		this.requestId = requestId;
 		this.noOfPeopleAttending = noOfPeopleAttending;
 		this.userId = userId;
 		this.fromdate = fromdate;
 		this.todate = todate;
+		this.listOfServices = listOfServices;
 	}
 
+	// getters and setters
 	public int getRequestId() {
 		return requestId;
 	}
@@ -53,10 +57,18 @@ public class PlanRequest {
 		this.todate = todate;
 	}
 
+	public String getListOfServices() {
+		return listOfServices;
+	}
+
+	public void setListOfServices(String listOfServices) {
+		this.listOfServices = listOfServices;
+	}
+
 	@Override
 	public String toString() {
 		return "PlanRequest [requestId=" + requestId + ", noOfPeopleAttending=" + noOfPeopleAttending + ", userId="
-				+ userId + ", fromdate=" + fromdate + ", todate=" + todate + "]";
+				+ userId + ", fromdate=" + fromdate + ", todate=" + todate + ", listOfServices=" + listOfServices + "]";
 	}
 
 }
